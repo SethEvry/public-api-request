@@ -2,12 +2,24 @@ const gallery = document.getElementById('gallery');
 const searchBar = document.querySelector('.search-container');
 const DEFAULT_RANDOM_USERS = 'https://randomuser.me/api/?results=12&nat=au,ca,gb,nz,us';
 
+//Adds a searcbar
+const search =`
+    <form action="#" method="get">
+        <input type="search" id="search-input" class="search-input" placeholder="Search...">
+        <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+    </form>`;
+searchBar.insertAdjacentHTML('beforeend', search)
 
 /*  =============================
          HELPER FUNCTIONS
     =============================
 */
 
+/**
+ * Creates cards for each user and populates the page
+ * 
+ * @param {Array} users 
+ */
 function summonCards(users){
     for(let user of users){
     let card = `
@@ -25,6 +37,12 @@ function summonCards(users){
     gallery.insertAdjacentHTML('beforeend', card);
     }   
 }
+/**
+ * Creates a modal based on the card clicked
+ * 
+ * @param {Array} users 
+ * @param {String} id 
+ */
 function summonModal(users, id){
     const user = users.filter(result => `${result.name.first}-${result.name.last}` === id)[0];
     const h3List = document.querySelectorAll('.card h3');
@@ -33,7 +51,8 @@ function summonModal(users, id){
         cards.push(h3.id)
     }
     const index = cards.indexOf(`${user.name.first}-${user.name.last}`);
-    console.log(index);
+
+    // format birthday string
     const birthday = () => {
         const date = user.dob.date.slice(0,10)
         const splitDate = date.split('-');
@@ -59,10 +78,18 @@ function summonModal(users, id){
                 <button type="button" id="modal-next" class="modal-next btn">Next</button>
             </div>
         </div>`
+
+    
     gallery.insertAdjacentHTML('beforebegin', modal);
+
+    //Adds functionality to the remove button
     document.getElementById('modal-close-btn')
         .addEventListener('click', (e) => document.querySelector(".modal-container").remove())
 
+    /**
+     * Add functionality to the next and previous buttons
+     */
+//==================================================================
     document.getElementById('modal-prev')
         .addEventListener('click', () => {
             if(index > 0){
@@ -81,15 +108,10 @@ function summonModal(users, id){
                 
             }
         })
+//==================================================================
     
 }
 
-const search =`
-    <form action="#" method="get">
-        <input type="search" id="search-input" class="search-input" placeholder="Search...">
-        <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-    </form>`;
-searchBar.insertAdjacentHTML('beforeend', search)
 /*  =============================
          FETCH FUNCTIONS
     =============================
@@ -113,6 +135,7 @@ usersPromise.then(data => {
          EVENT LISTENERS
     =============================
 */
+
 gallery.addEventListener('click', e => {
     if(e.target.className === 'card'){
         const id = e.target.querySelector('h3').id;
