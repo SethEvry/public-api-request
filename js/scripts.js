@@ -1,6 +1,7 @@
 const gallery = document.getElementById('gallery');
 const searchBar = document.querySelector('.search-container');
-const DEFAULT_RANDOM_USERS = 'https://randomuser.me/api/?results=12&nat=au,ca,gb,nz,us';
+// Only US nationality for phone number formatting and search bar language
+const DEFAULT_RANDOM_USERS = 'https://randomuser.me/api/?results=12&nat=us,au,gb,nz';
 
 //Adds a searcbar
 const search =`
@@ -58,6 +59,12 @@ function summonModal(users, id){
         const splitDate = date.split('-');
         return `${splitDate[1]}/${splitDate[2]}/${splitDate[0]}`
     }
+    const phoneNumber = () =>{
+        let phone = user.cell.split(/[\s./)(\-]+/g).join('');
+        const phoneRegex = /^(\d{3})(\d{3})(\d{4})$/;
+        phone = phone.match(phoneRegex)
+        return `(${phone[1]}) ${phone[2]}-${phone[3]}`
+    }
     let modal = `
         <div class="modal-container">
             <div class="modal">
@@ -68,7 +75,7 @@ function summonModal(users, id){
                     <p class="modal-text">${user.email}</p>
                     <p class="modal-text cap"${user.location.city}</p>
                     <hr>
-                    <p class="modal-text">${user.phone}</p>
+                    <p class="modal-text">${phoneNumber()}</p>
                     <p class="modal-text">${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state} ${user.location.postcode}</p>
                     <p class="modal-text">Birthday: ${birthday()}</p>
                 </div>
