@@ -91,6 +91,10 @@ header h1 {
     transition: .4s ease-out;
     overflow: hidden;
 }
+/* improve onclick functionality for modal */
+.card > * {
+    pointer-events: none;
+}
 
 .card-img {
     width: 95px;
