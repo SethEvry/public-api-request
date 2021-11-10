@@ -213,6 +213,7 @@ header h1 {
 .modal-btn-container .disabled {
     pointer-events: none;
     color:transparent;
+    user-select: none;
 }
   
 
