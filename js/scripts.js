@@ -74,8 +74,8 @@ function summonModal(users, id){
                 </div>
             </div>
             <div class="modal-btn-container">
-                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                <button type="button" id="modal-prev" class="${index > 0? "" : "disabled"} modal-prev btn">Prev</button>
+                <button type="button" id="modal-next" class="${index < cards.length - 1? "" : "disabled"} modal-next btn" >Next</button>
             </div>
         </div>`
 
