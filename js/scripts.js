@@ -1,6 +1,6 @@
 const gallery = document.getElementById('gallery');
 const searchBar = document.querySelector('.search-container');
-// Only US nationality for phone number formatting and search bar language
+// Reduced nationalities for search bar language
 const DEFAULT_RANDOM_USERS = 'https://randomuser.me/api/?results=12&nat=us,au,gb,nz';
 
 //Adds a searcbar
