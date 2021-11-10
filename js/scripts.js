@@ -73,9 +73,13 @@ function summonModal(users, id){
                     <p class="modal-text">Birthday: ${birthday()}</p>
                 </div>
             </div>
-            <div class="modal-btn-container">
-                <button type="button" id="modal-prev" class="${index > 0? "" : "disabled"} modal-prev btn">Prev</button>
-                <button type="button" id="modal-next" class="${index < cards.length - 1? "" : "disabled"} modal-next btn" >Next</button>
+            <div class="modal-btn-container ${cards.length <= 1? "hidden" : ""}">
+                <div class=${index > 0? "" : "not-allowed"}>
+                    <button type="button" id="modal-prev" class="${index > 0? "" : "disabled"} modal-prev btn">Prev</button>
+                </div>
+                <div class=${ cards.length < - 1? "" : "not-allowed"}>
+                    <button type="button" id="modal-next" class="${index < cards.length - 1? "" : "disabled"} modal-next btn" >Next</button>
+                </div>
             </div>
         </div>`
 

@@ -196,6 +196,9 @@ header h1 {
     border-radius: 0.25em;
     border: 1px solid rgba(100, 100, 100, 0.3);
 }
+.modal-btn-container.hidden{
+    display: none;
+}
 
 
 .modal-btn-container .btn {
@@ -210,6 +213,9 @@ header h1 {
     transition: .4s ease-out;
 }
 
+.modal-btn-container .not-allowed {
+    cursor: not-allowed;
+}
 .modal-btn-container .disabled {
     pointer-events: none;
     color:transparent;
